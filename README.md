@@ -155,7 +155,7 @@ No known bugs at this time.
 
 ## Authors
 Felix Too - [Github](https://github.com/felixtoo48)  
-Elijah Jack -
+Elijah Jack -[Github](https://github.com/Elijahjack63)
 
 Second part of Airbnb: Joann Vuong
 ## License
