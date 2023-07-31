@@ -14,7 +14,7 @@ app.register_blueprint(app_views, url_prefix="/api/v1")
 
 # Define a method to handle app teardown
 @app.teardown_appcontext
-def teardown_db(self):
+def teardown_appcontext(self):
     """ teardown"""
     storage.close()
 
