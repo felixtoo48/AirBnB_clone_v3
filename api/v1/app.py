@@ -2,12 +2,14 @@
 """flask"""
 
 from flask import Flask, render_template, jsonify
+from flask_cors import CORS
 from api.v1.views import app_views
 from models import storage
 from os import getenv
 
 # Create a Flask instance
 app = Flask(__name__)
+CORS(app)
 
 # Register the blueprint app_views to your Flask instance app
 app.register_blueprint(app_views, url_prefix="/api/v1")
