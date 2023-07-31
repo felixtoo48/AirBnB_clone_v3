@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """flask"""
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, jsonify
 from flask_cors import CORS
 from api.v1.views import app_views
 from models import storage
@@ -13,6 +13,7 @@ CORS(app)
 
 # Register the blueprint app_views to your Flask instance app
 app.register_blueprint(app_views, url_prefix="/api/v1")
+
 
 # Define a method to handle app teardown
 @app.teardown_appcontext
