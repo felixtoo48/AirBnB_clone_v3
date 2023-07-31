@@ -4,6 +4,7 @@ from flask import Flask
 from api.v1.views import app_views
 from models import storage
 import os
+import models
 
 # Create a Flask instance
 app = Flask(__name__)
