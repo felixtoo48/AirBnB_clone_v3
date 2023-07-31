@@ -13,11 +13,11 @@ app.reguster_blueprint(app_views)
 # Define a method to handle app teardown
 @app.teardown_appcontext
 def teardown_appcontext(exception):
-	storage.close()
+    storage.close()
+
 
 # Run the Flask server
 if __name__ == "__main__":
-	host = os.getenv("HBNB_API_HOST", "0.0.0.0")
-	port = int(os.getenv("HBNB_API_PORT", 5000))
-	app.run(host=host, port=port, threaded=True)
-
+    host = os.getenv("HBNB_API_HOST", "0.0.0.0")
+    port = int(os.getenv("HBNB_API_PORT", 5000))
+    app.run(host=host, port=port, threaded=True)
