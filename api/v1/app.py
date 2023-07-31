@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""flask"""
 
 from flask import Flask, render_template, jsonify
 from api.v1.views import app_views
@@ -16,6 +17,12 @@ app.register_blueprint(app_views)
 def teardown_appcontext(exception):
     """ teardown"""
     storage.close()
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """404ed"""
+    return jsonify({"error": "Not found"}), 404
 
 
 # Run the Flask server
