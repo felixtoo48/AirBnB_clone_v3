@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""init file"""
+"""initializing blueprint views"""
 from flask import Blueprint
 
 
@@ -10,3 +10,4 @@ from api.v1.views.index import *  # noqa
 from api.v1.views.states import *
 from api.v1.views.cities import *
 from api.v1.views.amenities import *
+from api.v1.views.users import *
