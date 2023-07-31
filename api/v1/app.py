@@ -10,17 +10,17 @@ import os
 app = Flask(__name__)
 
 # Register the blueprint app_views to your Flask instance app
-app.register_blueprint(app_views)
+app.register_blueprint(app_views, url_prefix="/api/v1")
 
 # Define a method to handle app teardown
 @app.teardown_appcontext
-def teardown_appcontext(exception):
+def teardown_db(self):
     """ teardown"""
     storage.close()
 
 
 @app.errorhandler(404)
-def page_not_found(e):
+def page_not_found(error):
     """404ed"""
     return jsonify({"error": "Not found"}), 404
 
