@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
-from flask import Flask
+from flask import Flask, render_template, jsonify
 from api.v1.views import app_views
 from models import storage
 import os
-import models
 
 # Create a Flask instance
 app = Flask(__name__)
@@ -15,6 +14,7 @@ app.register_blueprint(app_views)
 # Define a method to handle app teardown
 @app.teardown_appcontext
 def teardown_appcontext(exception):
+    """ teardown"""
     storage.close()
 
 
