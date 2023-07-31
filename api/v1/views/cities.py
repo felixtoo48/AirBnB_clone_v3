@@ -8,7 +8,7 @@ from models.state import State
 from api.v1.views import app_views
 
 
-@app_views.route("states/<state_id>/cities", methods=["GET"], /
+@app_views.route("states/<state_id>/cities", methods=["GET"],
                  strict_slashes=False)
 def get_cities(state_id):
     """retrieves the list of all city objects of a state"""
@@ -44,7 +44,7 @@ def delete_city(city_id):
         abort(404)
 
 
-@app_views.route("states/<state_id>/cities", methods=["POST"], /
+@app_views.route("states/<state_id>/cities", methods=["POST"],
                  strict_slashes=False)
 def create_city(state_id):
     """ creates a city"""
