@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Amenitie view module"""
+"""Amenitis view module"""
 
 from flask import jsonify, abort, request
 from models import storage

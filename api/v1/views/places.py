@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""state"""
+"""places"""
 
 from flask import jsonify, abort, request
 from models import storage
