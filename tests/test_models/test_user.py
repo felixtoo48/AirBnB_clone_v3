@@ -9,6 +9,7 @@ from models import user
 from models.base_model import BaseModel
 import pep8
 import unittest
+import hashlib
 User = user.User
 
 
@@ -58,6 +59,11 @@ class TestUserDocs(unittest.TestCase):
 
 class TestUser(unittest.TestCase):
     """Test the User class"""
+
+    def setUp(self):
+        """setup user"""
+        self.user = User()
+
     def test_is_subclass(self):
         """Test that User is a subclass of BaseModel"""
         user = User()
@@ -83,6 +89,13 @@ class TestUser(unittest.TestCase):
             self.assertEqual(user.password, None)
         else:
             self.assertEqual(user.password, "")
+
+    def test_password_hashing(self):
+        """test password hashing"""
+        password = "test_password"
+        self.user.password = password
+        expected_hash = hashlib.md5(password.encode()).hexdigest()
+        self.assertEqual(self.user.password, expected_hash)
 
     def test_first_name_attr(self):
         """Test that User has attr first_name, and it's an empty string"""
