@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """places amenities view module"""
 
-from flask import jsonify, abort, request
+from flask import jsonify, abort
 from models import storage
 from models.place import Place
 from models.amenity import Amenity
@@ -62,4 +62,3 @@ def link_amenity_to_place(place_id, amenity_id):
         amenity_ids.append(amenity_id)
         place.save()
     return jsonify(amenity.to_dict()), 201
-
