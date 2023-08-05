@@ -4,6 +4,7 @@ import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+import hashlib
 
 
 class User(BaseModel, Base):
@@ -25,3 +26,6 @@ class User(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initializes user"""
         super().__init__(*args, **kwargs)
+        if kwargs.get('password'):
+            self.password = hashlib.md5(kwargs['password'].encode())\
+                                   .hexdigest()
