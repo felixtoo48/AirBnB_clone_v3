@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """places"""
 
-from flask import jsonify, abort, request
+from flask import Flask, Blueprint, jsonify, abort, request
 from models import storage
+from models.state import State
 from models.place import Place
 from models.city import City
-from models.user import User
+from models.amenity import Amenity
 from api.v1.views import app_views
 
 
@@ -90,3 +91,38 @@ def update_place(place_id):
             setattr(place, key, value)
     storage.save()
     return jsonify(place.to_dict()), 200
+
+
+@app_views.route('/places_search', methods=['POST'])
+def search_places():
+    """Search for Place objects based on the JSON in the request body."""
+    data = request.get_json()
+    if not data:
+        abort(400, description='Not a JSON')
+
+    states = data.get('states', [])
+    cities = data.get('cities', [])
+    amenities = data.get('amenities', [])
+
+    places = []
+    if not states and not cities:
+        places = storage.all(Place).values()
+    else:
+        # Get Place objects for each State id listed
+        for state_id in states:
+            state = storage.get(State, state_id)
+            if state:
+                places.extend(state.places)
+
+        # Get Place objects for each City id listed
+        for city_id in cities:
+            city = storage.get(City, city_id)
+            if city:
+                places.extend(city.places)
+
+    # Filter results by amenities
+    if amenities:
+        places = [place for place in places if all(amenity.id in place.amenity_ids for amenity in amenities)]
+
+    result = [place.to_dict() for place in places]
+    return jsonify(result)
