@@ -32,10 +32,3 @@ class User(BaseModel, Base):
         if name == "password":
             value = md5(value.encode()).hexdigest()
         super().__setattr__(name, value)
-
-    def to_dict(self, include_password=False):
-        """returns a dictionary containing all keys/values of the instance"""
-        new_dict = super().to_dict()
-        if not include_password and "password" in new_dict:
-            del new_dict["password"]
-        return new_dict
